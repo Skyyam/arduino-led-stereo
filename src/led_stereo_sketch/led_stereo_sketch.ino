@@ -1,5 +1,6 @@
 /**
- * 
+ * Code for patterns on LED grid
+ * @Tina Rickard
  */
 
 void setup() {
