@@ -25,6 +25,7 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
   NEO_GRB + NEO_KHZ800
 );
 
+// define a structure RGB with values r, g, and b
 struct RGB {
   byte r;
   byte g;
@@ -59,6 +60,7 @@ void setup() {
   matrix.setBrightness(1);
 }
 
+// This function is by Brent Schooley
 void colorWipe(RGB color, uint8_t wait) {
   for(uint16_t row=0; row < LENGTH; row++) {
     for(uint16_t column=0; column < HEIGHT; column++) {
