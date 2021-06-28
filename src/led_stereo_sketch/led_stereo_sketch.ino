@@ -11,10 +11,12 @@
 #endif
 
 #define PIN 6
+#define LENGTH 8
+#define HEIGHT 8
 
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
-  8,
-  8,
+  LENGTH,
+  HEIGHT,
   PIN,
   NEO_MATRIX_TOP
     + NEO_MATRIX_RIGHT
@@ -48,34 +50,18 @@ RGB colors[] = {
   orange,
 };
 
+// size of array of colors
 int size = sizeof colors / sizeof colors[0];
-
 int wait = 10;
-
-int crossColor(int startVal, int endVal, int i, int steps) {
-  return startVal + (endVal - startVal) * i / steps;
-}
 
 void setup() {
   matrix.begin();
-  matrix.setTextWrap(false);
   matrix.setBrightness(1);
 }
 
-void crossFadeScreen(RGB startColor, RGB endColor, int steps, int wait) {
-  for(int i = 0; i <= steps; i++) {
-     int r = crossColor(startColor.r, endColor.r, i, steps);
-     int g = crossColor(startColor.g, endColor.g, i, steps);
-     int b = crossColor(startColor.b, endColor.b, i, steps);
-
-     matrix.fillScreen(matrix.Color(r, g, b));
-     matrix.show();
-  }
-}
-
 void colorWipe(RGB color, uint8_t wait) {
-  for(uint16_t row=0; row < 8; row++) {
-    for(uint16_t column=0; column < 8; column++) {
+  for(uint16_t row=0; row < LENGTH; row++) {
+    for(uint16_t column=0; column < HEIGHT; column++) {
       matrix.drawPixel(column, row, matrix.Color(color.r, color.g, color.b));
       matrix.show();
       delay(wait);
